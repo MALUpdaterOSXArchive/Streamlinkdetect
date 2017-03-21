@@ -22,10 +22,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-//! Project version number for streamlinkdetect.
+/**
+ The product version of the streamlinkdetect framework
+ @return double returns the project version.
+ */
 FOUNDATION_EXPORT double streamlinkdetectVersionNumber;
 
-//! Project version string for streamlinkdetect.
+/**
+ The product version string of the streamlinkdetect framework
+ @return char returns the project version string.
+ */
 FOUNDATION_EXPORT const unsigned char streamlinkdetectVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <streamlinkdetect/PublicHeader.h>

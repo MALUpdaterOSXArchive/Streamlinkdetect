@@ -21,20 +21,57 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/**
+ This class allows you run a stream with streamlink and obtain stream information (title, episode, site)
+ */
 @interface streamlinkdetector : NSObject{
+    /**
+     The task that executes streamlink
+     */
     NSTask * task;
+    /**
+     This returns the output from streamlink.
+     */
     NSPipe * pipe;
 }
+/**
+ This specifies the streamURL
+ @param streamurl The URL to the stream.
+ */
 @property (strong, setter=setStreamURL:) NSString * streamurl;
+/**
+ This specifies arguments for streamlink
+ @param args The arguments for streamlink.
+ */
 @property (strong, setter=setargs:) NSString * args;
+/**
+ This specifies the name of the stream to open in a media player.
+ @param stream The stream.
+ */
 @property (strong, setter=setStream:) NSString * stream;
+/**
+ This returns information about the playing stream.
+ @return NSArray The stream's information (title, episode, season, site)
+ */
 @property (strong, getter=getdetectinfo) NSArray * detectioninfo;
+/**
+ This specifies if there is a stream open.
+ @return bool Streamlinker's state.
+ */
 @property (getter=getStreamStatus) bool isstreaming;
 
-
+/**
+ This method retrieves the stream information of a URL.
+ @return bool Specifies if the stream information retrieval is successful or not.
+ */
 -(bool)getDetectionInfo;
+/**
+ This method starts streamlink with the specified arguments, stream url and stream name.
+ */
 -(void)startStream;
+/**
+ This method starts terminates streamlink.
+ */
 -(void)stopStream;
 
 @end

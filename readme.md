@@ -1,4 +1,4 @@
-# Stramlinkdetect
+# Streamlinkdetect
 
 Streamlinkdetect is a Objective-C framework and frontend for [streamlink](https://streamlink.github.io). It allows detection information to be parsed and then launch streamline with the arguments, stream url and stream.
 
@@ -18,6 +18,7 @@ Streamlinkdetect is a Objective-C framework and frontend for [streamlink](https:
 
 To use, simply do the following:
 ```objective-c
+	// Create a new instance of streamlinkdetector
 	streamlinkdetector * detector = [streamlinkdetector new];
 
 	// Setting the parameters
@@ -40,7 +41,7 @@ To use, simply do the following:
     }
 ```
 ## Documentation
-Documentation coming soon.
+Documentation can be viewed [here](http://atelier-shiori.github.io/Streamlinkdetect)
 
 ## License
 
