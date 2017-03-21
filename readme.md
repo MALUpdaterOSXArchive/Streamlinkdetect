@@ -12,11 +12,13 @@ Streamlinkdetect is a Objective-C framework and frontend for [streamlink](https:
 ### Objective C
 1. Copy the framework to your XCode Project
 2. Add this to the header file.
+
 ```objective-c
 #import <streamlinkdetect/streamlinkdetect.h>
 ```
 
 To use, simply do the following:
+
 ```objective-c
 	// Create a new instance of streamlinkdetector
 	streamlinkdetector * detector = [streamlinkdetector new];
@@ -40,11 +42,10 @@ To use, simply do the following:
         [detector stopStream];
     }
 ```
+
 ## Documentation
 Documentation can be viewed [here](http://atelier-shiori.github.io/Streamlinkdetect)
 
 ## License
 
 Stramlinkdetect is licensed under GNU Public License version 3.
-
-This project uses portions of EasyNSURLConnection licensed under MIT License.
