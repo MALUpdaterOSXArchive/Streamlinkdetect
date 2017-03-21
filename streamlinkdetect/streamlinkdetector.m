@@ -36,14 +36,12 @@
 -(void)startStream{
     task = [[NSTask alloc] init];
     [task setLaunchPath:@"/usr/local/bin/streamlink"];
-    NSString * fargs;
     if ([[self args] length] > 0){
-        fargs = [NSString stringWithFormat:@"%@ %@ %@", [self args], [self streamurl], [self stream]];
+        [task setArguments:@[[self args], [self streamurl], [self stream]]];
     }
     else{
-        fargs = [NSString stringWithFormat:@"%@ %@", [self streamurl], [self stream]];
+        [task setArguments:@[[self streamurl], [self stream]]];
     }
-    [task setArguments:@[fargs]];
     pipe = nil;
     if (!pipe){
         pipe = [[NSPipe alloc] init];

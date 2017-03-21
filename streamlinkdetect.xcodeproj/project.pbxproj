@@ -376,6 +376,7 @@
 				91056D0F1E819355009F20CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
