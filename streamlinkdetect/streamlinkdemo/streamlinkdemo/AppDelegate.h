@@ -21,6 +21,7 @@
 - (IBAction)startstream:(id)sender;
 - (IBAction)stopstream:(id)sender;
 - (IBAction)loadinfo:(id)sender;
+- (IBAction)getAvailableStreams:(id)sender;
 
 @end
 

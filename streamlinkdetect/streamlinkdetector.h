@@ -36,17 +36,14 @@
 }
 /**
  This specifies the streamURL
- @param streamurl The URL to the stream.
  */
 @property (strong, setter=setStreamURL:) NSString * streamurl;
 /**
  This specifies arguments for streamlink
- @param args The arguments for streamlink.
  */
 @property (strong, setter=setargs:) NSString * args;
 /**
  This specifies the name of the stream to open in a media player.
- @param stream The stream.
  */
 @property (strong, setter=setStream:) NSString * stream;
 /**
@@ -73,5 +70,8 @@
  This method starts terminates streamlink.
  */
 -(void)stopStream;
-
+/**
+ This method returns a list of available streams.
+ */
+-(NSArray *)getAvailableStreams;
 @end

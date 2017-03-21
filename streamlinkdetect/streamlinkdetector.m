@@ -23,6 +23,7 @@
 #import "streamlinkdetector.h"
 #import "StreamInfoRetrieval.h"
 #import "MediaStreamParse.h"
+#import "ezregex.h"
 
 @implementation streamlinkdetector
 -(bool)getDetectionInfo{
@@ -33,6 +34,7 @@
     }
     return false;
 }
+
 -(void)startStream{
     task = [[NSTask alloc] init];
     [task setLaunchPath:@"/usr/local/bin/streamlink"];
@@ -62,5 +64,26 @@
     if (task){
         [task terminate];
     }
+}
+-(NSArray *)getAvailableStreams{
+    NSTask * task2 = [[NSTask alloc] init];
+    [task2 setLaunchPath:@"/usr/local/bin/streamlink"];
+    [task2 setArguments:@[[self streamurl]]];
+    NSPipe *pipe2 = [NSPipe pipe];
+    task2.standardOutput = pipe2;
+    NSFileHandle *file = pipe2.fileHandleForReading;
+    [task2 launch];
+    [task waitUntilExit];
+    int status = [task terminationStatus];
+    if (status == 0){
+        NSData *data = [file readDataToEndOfFile];
+        NSString * output = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+        output = [[ezregex new] findMatch:output pattern:@"Available streams:*.*" rangeatindex:0];
+        output = [output stringByReplacingOccurrencesOfString:@"Available streams: " withString:@""];
+        output = [output stringByReplacingOccurrencesOfString:@" (worst)" withString:@""];
+        output = [output stringByReplacingOccurrencesOfString:@" (best)" withString:@""];
+        return [output componentsSeparatedByString:@","];
+    }
+    return @[];
 }
 @end
