@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface EasyNSURLConnection : NSObject{
+@interface EasyNSURLConnectionLite : NSObject{
 	/** 
 		The user agent of the request. Example: "MAL Updater OS X 2.2.13 (Macintosh; Mac OS X 10.12.3; en_US)"
 		@see setUserAgent:

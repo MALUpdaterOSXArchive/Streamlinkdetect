@@ -14,7 +14,7 @@
 NSString *const supportedSites = @"(crunchyroll|daisuki|animelab|animenewsnetwork|viz|netflix|plex|viewster|funimation|wakanim|myanimelist|32400)";
 +(NSDictionary *)retrieveStreamInfo:(NSString*) URL{
     // Retrieves information about stream
-    EasyNSURLConnection * request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:URL]];
+    EasyNSURLConnectionLite * request = [[EasyNSURLConnectionLite alloc] initWithURL:[NSURL URLWithString:URL]];
     [request setUserAgent:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12"];
     [request startRequest];
     if (request.getStatusCode == 200){

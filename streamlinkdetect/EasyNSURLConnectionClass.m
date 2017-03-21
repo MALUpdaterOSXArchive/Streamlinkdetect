@@ -10,7 +10,7 @@
 #import "EasyNSURLConnectionClass.h"
 #import "EasyNSURLResponse.h"
 
-@implementation EasyNSURLConnection
+@implementation EasyNSURLConnectionLite
 
 #pragma constructors
 -(id)init{

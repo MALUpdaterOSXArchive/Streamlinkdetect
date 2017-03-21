@@ -10,15 +10,15 @@
 		91056D0A1E819355009F20CC /* streamlinkdetect.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D081E819355009F20CC /* streamlinkdetect.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91056D121E819582009F20CC /* streamlinkdetector.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D101E819582009F20CC /* streamlinkdetector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91056D131E819582009F20CC /* streamlinkdetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 91056D111E819582009F20CC /* streamlinkdetector.m */; };
-		91056D161E81979C009F20CC /* MediaStreamParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D141E81979C009F20CC /* MediaStreamParse.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		91056D161E81979C009F20CC /* MediaStreamParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D141E81979C009F20CC /* MediaStreamParse.h */; };
 		91056D171E81979C009F20CC /* MediaStreamParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 91056D151E81979C009F20CC /* MediaStreamParse.m */; };
-		91056D1A1E8197A1009F20CC /* ezregex.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D181E8197A1009F20CC /* ezregex.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		91056D1A1E8197A1009F20CC /* ezregex.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D181E8197A1009F20CC /* ezregex.h */; };
 		91056D1B1E8197A1009F20CC /* ezregex.m in Sources */ = {isa = PBXBuildFile; fileRef = 91056D191E8197A1009F20CC /* ezregex.m */; };
-		91056D1E1E819863009F20CC /* StreamInfoRetrieval.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D1C1E819863009F20CC /* StreamInfoRetrieval.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		91056D1E1E819863009F20CC /* StreamInfoRetrieval.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D1C1E819863009F20CC /* StreamInfoRetrieval.h */; };
 		91056D1F1E819863009F20CC /* StreamInfoRetrieval.m in Sources */ = {isa = PBXBuildFile; fileRef = 91056D1D1E819863009F20CC /* StreamInfoRetrieval.m */; };
-		91056D241E8198C4009F20CC /* EasyNSURLConnectionClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D201E8198C4009F20CC /* EasyNSURLConnectionClass.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		91056D241E8198C4009F20CC /* EasyNSURLConnectionClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D201E8198C4009F20CC /* EasyNSURLConnectionClass.h */; };
 		91056D251E8198C4009F20CC /* EasyNSURLConnectionClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 91056D211E8198C4009F20CC /* EasyNSURLConnectionClass.m */; };
-		91056D261E8198C4009F20CC /* EasyNSURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D221E8198C4009F20CC /* EasyNSURLResponse.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		91056D261E8198C4009F20CC /* EasyNSURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D221E8198C4009F20CC /* EasyNSURLResponse.h */; };
 		91056D271E8198C4009F20CC /* EasyNSURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 91056D231E8198C4009F20CC /* EasyNSURLResponse.m */; };
 /* End PBXBuildFile section */
 
@@ -116,12 +116,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				91056D121E819582009F20CC /* streamlinkdetector.h in Headers */,
+				91056D0A1E819355009F20CC /* streamlinkdetect.h in Headers */,
 				91056D1A1E8197A1009F20CC /* ezregex.h in Headers */,
 				91056D241E8198C4009F20CC /* EasyNSURLConnectionClass.h in Headers */,
 				91056D161E81979C009F20CC /* MediaStreamParse.h in Headers */,
 				91056D1E1E819863009F20CC /* StreamInfoRetrieval.h in Headers */,
 				91056D261E8198C4009F20CC /* EasyNSURLResponse.h in Headers */,
-				91056D0A1E819355009F20CC /* streamlinkdetect.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
