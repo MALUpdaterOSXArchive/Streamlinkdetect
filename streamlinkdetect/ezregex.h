@@ -1,6 +1,6 @@
 //
 //  ezregex.h
-//  Detectstream
+//  streamlinkdetect
 //
 //  Created by Tail Red on 2/06/15.
 //  Copyright 2015 Atelier Shiori. All rights reserved. Code licensed under New BSD License

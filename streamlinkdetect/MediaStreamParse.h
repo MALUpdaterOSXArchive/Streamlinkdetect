@@ -1,6 +1,6 @@
 //
 //  MediaStreamParse.h
-//  detectstream
+//  streamlinkdetect
 //
 //  Created by 高町なのは on 2015/02/09.
 //  Copyright (c) 2015年 Chikorita157's Anime Blog. All rights reserved.

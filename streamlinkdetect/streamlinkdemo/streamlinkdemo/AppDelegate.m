@@ -18,6 +18,9 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     detector = [streamlinkdetector new];
+    if (![self checkifStreamLinkExists]){
+        [self showStreamLinkNotInstalledAlert];
+    }
 }
 
 
@@ -42,6 +45,7 @@
 }
 
 - (IBAction)loadinfo:(id)sender {
+    [detector setStreamURL:_streamurl.stringValue];
     dispatch_queue_t queue = dispatch_get_global_queue(
                                                        DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
@@ -64,4 +68,30 @@
         });
     });
 }
+-(bool)checkifStreamLinkExists{
+    NSFileManager *filemanager = [NSFileManager defaultManager];
+    NSString * fullfilenamewithpath = @"/usr/local/bin/streamlink";
+    if ([filemanager fileExistsAtPath:fullfilenamewithpath]){
+        return true;
+    }
+    return false;
+}
+-(void)showStreamLinkNotInstalledAlert{
+    // Shows Donation Reminder
+    NSAlert * alert = [[NSAlert alloc] init] ;
+    [alert addButtonWithTitle:NSLocalizedString(@"Yes",nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"No",nil)];
+    [alert setMessageText:NSLocalizedString(@"Streamlink is not installed",nil)];
+    [alert setInformativeText:NSLocalizedString(@"To use this feature, you need to install streamlink. Do you want to view the instructions on how to install it?",nil)];
+    [alert setShowsSuppressionButton:NO];
+    // Set Message type to Warning
+    [alert setAlertStyle:NSInformationalAlertStyle];
+    long choice = [alert runModal];
+    if (choice == NSAlertFirstButtonReturn) {
+        // Open Donation Page
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://streamlink.github.io/install.html"]];
+    }
+    [[NSApplication sharedApplication] terminate:self];
+}
+
 @end
