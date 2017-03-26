@@ -88,8 +88,18 @@
     return @[];
 }
 -(void)checkStreamLink:(NSWindow *)w{
-    if (![self checkifStreamLinkExists]){
-        [self showStreamLinkNotInstalledAlert:w];
+    if (![self checkifPythonExists]){
+        if (![self checkifHomebrewExists]){
+            [self showHomebrewNotInstalledAlert];
+        }
+        else if (![self checkifStreamLinkExists]){
+            [self showStreamLinkNotInstalledAlert:w];
+        }
+    }
+    else{
+        if (![self checkifStreamLinkExists]){
+            [self showStreamLinkNotInstalledAlert:w];
+        }
     }
 }
 -(bool)checkifStreamLinkExists{
@@ -100,13 +110,44 @@
     }
     return false;
 }
+-(bool)checkifPythonExists{
+    NSFileManager *filemanager = [NSFileManager defaultManager];
+    NSString * fullfilenamewithpath = @"/usr/local/bin/python";
+    if ([filemanager fileExistsAtPath:fullfilenamewithpath]){
+        return true;
+    }
+    return false;
+}
+-(bool)checkifHomebrewExists{
+    NSFileManager *filemanager = [NSFileManager defaultManager];
+    NSString * fullfilenamewithpath = @"/usr/local/bin/brew";
+    if ([filemanager fileExistsAtPath:fullfilenamewithpath]){
+        return true;
+    }
+    return false;
+}
+-(void)showHomebrewNotInstalledAlert{
+    // Shows Donation Reminder
+    NSAlert * alert = [[NSAlert alloc] init] ;
+    [alert addButtonWithTitle:NSLocalizedString(@"Yes",nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"No",nil)];
+    [alert setMessageText:NSLocalizedString(@"Homebrew is not installed",nil)];
+    [alert setInformativeText:NSLocalizedString(@"To install streamlink, Homebrew needs to be installed to install Python. Do you want to view instructions to install it?",nil)];
+    [alert setShowsSuppressionButton:NO];
+    // Set Message type to Warning
+    [alert setAlertStyle:NSInformationalAlertStyle];
+    long choice = [alert runModal];
+    if (choice == NSAlertFirstButtonReturn) {
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://brew.sh"]];
+    }
+}
 -(void)showStreamLinkNotInstalledAlert:(NSWindow *)w{
     // Shows Donation Reminder
     NSAlert * alert = [[NSAlert alloc] init] ;
     [alert addButtonWithTitle:NSLocalizedString(@"Yes",nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"No",nil)];
     [alert setMessageText:NSLocalizedString(@"Streamlink is not installed",nil)];
-    [alert setInformativeText:NSLocalizedString(@"To use this feature, you need to install streamlink. Do you want to view the instructions on how to install it?",nil)];
+    [alert setInformativeText:NSLocalizedString(@"To use this feature, you need to install streamlink. Do you want install streamlink now?",nil)];
     [alert setShowsSuppressionButton:NO];
     // Set Message type to Warning
     [alert setAlertStyle:NSInformationalAlertStyle];

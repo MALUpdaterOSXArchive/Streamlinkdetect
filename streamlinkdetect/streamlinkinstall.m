@@ -46,12 +46,51 @@
 - (void)windowDidLoad {
     [super windowDidLoad];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    [self installStreamLink];
+    NSFileManager *filemanager = [NSFileManager defaultManager];
+    NSString * fullfilenamewithpath = @"/usr/local/bin/python";
+    if (![filemanager fileExistsAtPath:fullfilenamewithpath]){
+        [self installPython];
+    }
+    else{
+        [self installStreamLink];
+    }
 }
--(void)installStreamLink{
+-(void)installPython{
     [_progressind startAnimation:nil];
     task = [NSTask new];
-    _statuslbl.stringValue = @"Installing streamlink.";
+    _statuslbl.stringValue = @"Installing Python from Homebrew.";
+    [task setLaunchPath:@"/usr/local/Homebrew/bin/brew"];
+    [task setArguments:@[@"install", @"python"]];
+    pipe = nil;
+    if (!pipe){
+        pipe = [[NSPipe alloc] init];
+    }
+    [task setStandardOutput:pipe];
+    __weak typeof(self) weakSelf = self;
+    [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        NSData *data = [file availableData]; // this will read to EOF, so call only once
+        [weakSelf appendString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+    }];
+    [task setTerminationHandler:^(NSTask *task2) {
+        [task2.standardOutput fileHandleForReading].readabilityHandler = nil;
+        if ([task2 terminationStatus] != 0){
+            [weakSelf appendString:@"Python install failed!"];
+            [weakSelf setStatusLabel:[task2 terminationStatus]];
+        }
+        else {
+             weakSelf.statuslbl.stringValue = @"Installing streamlink.";
+             [weakSelf installStreamLink];
+        }
+    }];
+    [task launch];
+
+}
+-(void)installStreamLink{
+    task = nil;
+    __weak typeof(self) weakSelf = self;
+    [_progressind startAnimation:nil];
+    task = [NSTask new];
+    weakSelf.statuslbl.stringValue = @"Installing streamlink.";
     [task setLaunchPath:@"/usr/local/bin/easy_install"];
     [task setArguments:@[@"-U", @"streamlink"]];
     pipe = nil;
@@ -61,19 +100,19 @@
     [task setStandardOutput:pipe];
     [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
         NSData *data = [file availableData]; // this will read to EOF, so call only once
-        [_consoletext setString:[[_consoletext string] stringByAppendingString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
+        [weakSelf appendString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
     }];
-    [task setTerminationHandler:^(NSTask *task) {
-        if ([task terminationStatus] != 0){
-            NSFileHandle *readHandle = [pipe fileHandleForReading];
-            NSData *inData = nil;
-            inData = [readHandle availableData];
-            [_consoletext setString:@"Install failed."];
+    [task setTerminationHandler:^(NSTask *task2) {
+        [task2.standardOutput fileHandleForReading].readabilityHandler = nil;
+        if ([task2 terminationStatus] != 0){
+            [weakSelf appendString:@"Install failed"];
         }
-        [task.standardOutput fileHandleForReading].readabilityHandler = nil;
-        [self setStatusLabel:[task terminationStatus]];
+        [weakSelf setStatusLabel:[task2 terminationStatus]];
     }];
     [task launch];
+}
+-(void)appendString:(NSString *)append{
+    [_consoletext setString:[_consoletext.string stringByAppendingString:append]];
 }
 -(void)setStatusLabel:(int)exit{
     switch (exit){
