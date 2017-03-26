@@ -94,7 +94,6 @@
 -(bool)checkifStreamLinkExists;
 /**
  This method installs Streamlink
-@pram w The window to attach the dialog to as a sheet
  */
--(void)installStreamLink:(NSWindow *)w;
+-(void)installStreamLink;
 @end

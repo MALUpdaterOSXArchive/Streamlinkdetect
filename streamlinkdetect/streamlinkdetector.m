@@ -21,7 +21,6 @@
 //
 
 #import "streamlinkdetector.h"
-#import "streamlinkinstall.h"
 #import "StreamInfoRetrieval.h"
 #import "MediaStreamParse.h"
 #import "ezregex.h"
@@ -153,20 +152,15 @@
     [alert setAlertStyle:NSInformationalAlertStyle];
     long choice = [alert runModal];
     if (choice == NSAlertFirstButtonReturn) {
-        [self installStreamLink:w];
+        [self installStreamLink];
     }
 }
--(void)installStreamLink:(NSWindow *)w{
-    // Shows streamlink install window
-    if (!streamlinkinstallw){
-        streamlinkinstallw = [[streamlinkinstall alloc] initWithDetector:self];
-    }
-    [NSApp beginSheet:streamlinkinstallw.window
-       modalForWindow:w modalDelegate:self
-       didEndSelector:@selector(streamlinkinstallDidEnd:returnCode:contextInfo:)
-          contextInfo:(void *)nil];
+-(void)installStreamLink{
+    NSBundle *mainBundle = [NSBundle bundleForClass:[self class]];
+    NSString *helperAppPath = [[mainBundle resourcePath]
+                               stringByAppendingString:@"/streamlink Installer.app"];
+    
+    [[NSWorkspace sharedWorkspace] launchApplication:helperAppPath];
 }
--(void)streamlinkinstallDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo {
-    streamlinkinstallw = nil;
-}
+
 @end

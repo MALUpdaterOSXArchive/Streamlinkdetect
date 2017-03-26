@@ -16,9 +16,7 @@
 		91056D1B1E8197A1009F20CC /* ezregex.m in Sources */ = {isa = PBXBuildFile; fileRef = 91056D191E8197A1009F20CC /* ezregex.m */; };
 		91056D1E1E819863009F20CC /* StreamInfoRetrieval.h in Headers */ = {isa = PBXBuildFile; fileRef = 91056D1C1E819863009F20CC /* StreamInfoRetrieval.h */; };
 		91056D1F1E819863009F20CC /* StreamInfoRetrieval.m in Sources */ = {isa = PBXBuildFile; fileRef = 91056D1D1E819863009F20CC /* StreamInfoRetrieval.m */; };
-		911C071B1E883F650005E28F /* streamlinkinstall.h in Headers */ = {isa = PBXBuildFile; fileRef = 911C07181E883F650005E28F /* streamlinkinstall.h */; };
-		911C071C1E883F650005E28F /* streamlinkinstall.m in Sources */ = {isa = PBXBuildFile; fileRef = 911C07191E883F650005E28F /* streamlinkinstall.m */; };
-		911C071F1E8840EC0005E28F /* streamlinkinstall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 911C07211E8840EC0005E28F /* streamlinkinstall.xib */; };
+		9138A5101E887D4B004F3FC6 /* streamlink Installer.app in Resources */ = {isa = PBXBuildFile; fileRef = 9138A5011E887B2E004F3FC6 /* streamlink Installer.app */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +26,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 91056D311E81A2C0009F20CC;
 			remoteInfo = streamlinkdemo;
+		};
+		9138A5001E887B2E004F3FC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9138A4FC1E887B2E004F3FC6 /* streamlink Installer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9138A4D51E887AA3004F3FC6;
+			remoteInfo = "streamlink Installer";
+		};
+		9138A5111E887DC4004F3FC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9138A4FC1E887B2E004F3FC6 /* streamlink Installer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9138A4D41E887AA2004F3FC6;
+			remoteInfo = "streamlink Installer";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -44,9 +56,7 @@
 		91056D1C1E819863009F20CC /* StreamInfoRetrieval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamInfoRetrieval.h; sourceTree = "<group>"; };
 		91056D1D1E819863009F20CC /* StreamInfoRetrieval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamInfoRetrieval.m; sourceTree = "<group>"; };
 		91056D451E81A2D9009F20CC /* streamlinkdemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = streamlinkdemo.xcodeproj; path = streamlinkdetect/streamlinkdemo/streamlinkdemo.xcodeproj; sourceTree = "<group>"; };
-		911C07181E883F650005E28F /* streamlinkinstall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streamlinkinstall.h; sourceTree = "<group>"; };
-		911C07191E883F650005E28F /* streamlinkinstall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = streamlinkinstall.m; sourceTree = "<group>"; };
-		911C07201E8840EC0005E28F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/streamlinkinstall.xib; sourceTree = "<group>"; };
+		9138A4FC1E887B2E004F3FC6 /* streamlink Installer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "streamlink Installer.xcodeproj"; path = "streamlink Installer/streamlink Installer.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +73,7 @@
 		91056CFB1E819354009F20CC = {
 			isa = PBXGroup;
 			children = (
+				9138A4FC1E887B2E004F3FC6 /* streamlink Installer.xcodeproj */,
 				91056D451E81A2D9009F20CC /* streamlinkdemo.xcodeproj */,
 				91056D071E819355009F20CC /* streamlinkdetect */,
 				91056D061E819355009F20CC /* Products */,
@@ -83,15 +94,12 @@
 				91056D081E819355009F20CC /* streamlinkdetect.h */,
 				91056D101E819582009F20CC /* streamlinkdetector.h */,
 				91056D111E819582009F20CC /* streamlinkdetector.m */,
-				911C07181E883F650005E28F /* streamlinkinstall.h */,
-				911C07191E883F650005E28F /* streamlinkinstall.m */,
-				911C07211E8840EC0005E28F /* streamlinkinstall.xib */,
+				91056D1C1E819863009F20CC /* StreamInfoRetrieval.h */,
+				91056D1D1E819863009F20CC /* StreamInfoRetrieval.m */,
 				91056D181E8197A1009F20CC /* ezregex.h */,
 				91056D191E8197A1009F20CC /* ezregex.m */,
 				91056D141E81979C009F20CC /* MediaStreamParse.h */,
 				91056D151E81979C009F20CC /* MediaStreamParse.m */,
-				91056D1C1E819863009F20CC /* StreamInfoRetrieval.h */,
-				91056D1D1E819863009F20CC /* StreamInfoRetrieval.m */,
 				91056D091E819355009F20CC /* Info.plist */,
 			);
 			path = streamlinkdetect;
@@ -101,6 +109,14 @@
 			isa = PBXGroup;
 			children = (
 				91056D4A1E81A2D9009F20CC /* streamlinkdemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9138A4FD1E887B2E004F3FC6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9138A5011E887B2E004F3FC6 /* streamlink Installer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,7 +132,6 @@
 				91056D0A1E819355009F20CC /* streamlinkdetect.h in Headers */,
 				91056D1A1E8197A1009F20CC /* ezregex.h in Headers */,
 				91056D161E81979C009F20CC /* MediaStreamParse.h in Headers */,
-				911C071B1E883F650005E28F /* streamlinkinstall.h in Headers */,
 				91056D1E1E819863009F20CC /* StreamInfoRetrieval.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +151,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9138A5121E887DC4004F3FC6 /* PBXTargetDependency */,
 			);
 			name = streamlinkdetect;
 			productName = streamlinkdetect;
@@ -170,6 +186,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9138A4FD1E887B2E004F3FC6 /* Products */;
+					ProjectRef = 9138A4FC1E887B2E004F3FC6 /* streamlink Installer.xcodeproj */;
+				},
+				{
 					ProductGroup = 91056D461E81A2D9009F20CC /* Products */;
 					ProjectRef = 91056D451E81A2D9009F20CC /* streamlinkdemo.xcodeproj */;
 				},
@@ -189,6 +209,13 @@
 			remoteRef = 91056D491E81A2D9009F20CC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9138A5011E887B2E004F3FC6 /* streamlink Installer.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "streamlink Installer.app";
+			remoteRef = 9138A5001E887B2E004F3FC6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -196,7 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				911C071F1E8840EC0005E28F /* streamlinkinstall.xib in Resources */,
+				9138A5101E887D4B004F3FC6 /* streamlink Installer.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,7 +236,6 @@
 			files = (
 				91056D171E81979C009F20CC /* MediaStreamParse.m in Sources */,
 				91056D1B1E8197A1009F20CC /* ezregex.m in Sources */,
-				911C071C1E883F650005E28F /* streamlinkinstall.m in Sources */,
 				91056D1F1E819863009F20CC /* StreamInfoRetrieval.m in Sources */,
 				91056D131E819582009F20CC /* streamlinkdetector.m in Sources */,
 			);
@@ -217,16 +243,13 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		911C07211E8840EC0005E28F /* streamlinkinstall.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				911C07201E8840EC0005E28F /* en */,
-			);
-			name = streamlinkinstall.xib;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		9138A5121E887DC4004F3FC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "streamlink Installer";
+			targetProxy = 9138A5111E887DC4004F3FC6 /* PBXContainerItemProxy */;
 		};
-/* End PBXVariantGroup section */
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		91056D0B1E819355009F20CC /* Debug */ = {
