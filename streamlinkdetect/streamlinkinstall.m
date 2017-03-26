@@ -72,7 +72,7 @@
     }
     [_closebtn setEnabled:true];
     [_progressind stopAnimation:nil];
-    [_progressind setHidden:NO];
+    [_progressind setHidden:YES];
 }
 - (IBAction)closewindow:(id)sender {
     [self.window orderOut:self];
