@@ -68,18 +68,21 @@
     [task setStandardOutput:pipe];
     __weak typeof(self) weakSelf = self;
     [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        dispatch_async(dispatch_get_main_queue(), ^{
         NSData *data = [file availableData]; // this will read to EOF, so call only once
         [weakSelf appendString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+        });
     }];
     [task setTerminationHandler:^(NSTask *task2) {
         [task2.standardOutput fileHandleForReading].readabilityHandler = nil;
         if ([task2 terminationStatus] != 0){
-            [weakSelf appendString:@"Python install failed!"];
-            [weakSelf setStatusLabel:[task2 terminationStatus]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf appendString:@"Python install failed!"];
+                [weakSelf setStatusLabel:[task2 terminationStatus]];
+            });
         }
         else {
-             weakSelf.statuslbl.stringValue = @"Installing streamlink.";
-             [weakSelf installStreamLink];
+            [weakSelf installStreamLink];
         }
     }];
     [task launch];
@@ -88,9 +91,11 @@
 -(void)installStreamLink{
     task = nil;
     __weak typeof(self) weakSelf = self;
-    [_progressind startAnimation:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_progressind startAnimation:nil];
+        weakSelf.statuslbl.stringValue = @"Installing streamlink.";
+    });
     task = [NSTask new];
-    weakSelf.statuslbl.stringValue = @"Installing streamlink.";
     [task setLaunchPath:@"/usr/local/bin/easy_install"];
     [task setArguments:@[@"-U", @"streamlink"]];
     pipe = nil;
@@ -99,20 +104,27 @@
     }
     [task setStandardOutput:pipe];
     [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        dispatch_async(dispatch_get_main_queue(), ^{
         NSData *data = [file availableData]; // this will read to EOF, so call only once
         [weakSelf appendString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+        });
     }];
     [task setTerminationHandler:^(NSTask *task2) {
         [task2.standardOutput fileHandleForReading].readabilityHandler = nil;
+        dispatch_async(dispatch_get_main_queue(), ^{
         if ([task2 terminationStatus] != 0){
             [weakSelf appendString:@"Install failed"];
         }
         [weakSelf setStatusLabel:[task2 terminationStatus]];
+        });
     }];
     [task launch];
 }
 -(void)appendString:(NSString *)append{
+    BOOL scroll = (NSMaxY(_consoletext.visibleRect) == NSMaxY(_consoletext.bounds));
     [_consoletext setString:[_consoletext.string stringByAppendingString:append]];
+    if (scroll)
+        [_consoletext scrollRangeToVisible: NSMakeRange(_consoletext.string.length, 0)];
 }
 -(void)setStatusLabel:(int)exit{
     switch (exit){
