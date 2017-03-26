@@ -21,6 +21,7 @@
 //
 
 #import "streamlinkdetector.h"
+#import "streamlinkinstall.h"
 #import "StreamInfoRetrieval.h"
 #import "MediaStreamParse.h"
 #import "ezregex.h"
@@ -34,7 +35,6 @@
     }
     return false;
 }
-
 -(void)startStream{
     task = [[NSTask alloc] init];
     [task setLaunchPath:@"/usr/local/bin/streamlink"];
@@ -59,6 +59,7 @@
         }];
     [task launch];
     _isstreaming = true;
+
 }
 -(void)stopStream{
     if (task){
@@ -85,5 +86,46 @@
         return [output componentsSeparatedByString:@","];
     }
     return @[];
+}
+-(void)checkStreamLink:(NSWindow *)w{
+    if (![self checkifStreamLinkExists]){
+        [self showStreamLinkNotInstalledAlert:w];
+    }
+}
+-(bool)checkifStreamLinkExists{
+    NSFileManager *filemanager = [NSFileManager defaultManager];
+    NSString * fullfilenamewithpath = @"/usr/local/bin/streamlink";
+    if ([filemanager fileExistsAtPath:fullfilenamewithpath]){
+        return true;
+    }
+    return false;
+}
+-(void)showStreamLinkNotInstalledAlert:(NSWindow *)w{
+    // Shows Donation Reminder
+    NSAlert * alert = [[NSAlert alloc] init] ;
+    [alert addButtonWithTitle:NSLocalizedString(@"Yes",nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"No",nil)];
+    [alert setMessageText:NSLocalizedString(@"Streamlink is not installed",nil)];
+    [alert setInformativeText:NSLocalizedString(@"To use this feature, you need to install streamlink. Do you want to view the instructions on how to install it?",nil)];
+    [alert setShowsSuppressionButton:NO];
+    // Set Message type to Warning
+    [alert setAlertStyle:NSInformationalAlertStyle];
+    long choice = [alert runModal];
+    if (choice == NSAlertFirstButtonReturn) {
+        [self installStreamLink:w];
+    }
+}
+-(void)installStreamLink:(NSWindow *)w{
+    // Shows streamlink install window
+    if (!streamlinkinstallw){
+        streamlinkinstallw = [[streamlinkinstall alloc] initWithDetector:self];
+    }
+    [NSApp beginSheet:streamlinkinstallw.window
+       modalForWindow:w modalDelegate:self
+       didEndSelector:@selector(streamlinkinstallDidEnd:returnCode:contextInfo:)
+          contextInfo:(void *)nil];
+}
+-(void)streamlinkinstallDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo {
+    streamlinkinstallw = nil;
 }
 @end
