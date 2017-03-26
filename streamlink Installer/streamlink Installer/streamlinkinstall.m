@@ -1,6 +1,6 @@
 //
 //  streamlinkinstall.m
-//  streamlinkdetect
+//  streamlink Installer
 //
 //  Created by 天々座理世 on 2017/03/26.
 //  Copyright © 2017年 Atelier Shiori. All rights reserved.
@@ -22,10 +22,8 @@
 //
 
 #import "streamlinkinstall.h"
-#import "streamlinkdetector.h"
 
 @interface streamlinkinstall (){
-    streamlinkdetector * detector;
     NSTask * task;
     NSPipe * pipe;
 }
@@ -38,10 +36,6 @@
     if(!self)
         return nil;
     return self;
-}
--(instancetype)initWithDetector:(streamlinkdetector *)detect{
-    detector = detect;
-    return [self init];
 }
 - (void)windowDidLoad {
     [super windowDidLoad];
@@ -68,8 +62,8 @@
     [task setStandardOutput:pipe];
     __weak typeof(self) weakSelf = self;
     [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
-        dispatch_async(dispatch_get_main_queue(), ^{
         NSData *data = [file availableData]; // this will read to EOF, so call only once
+        dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf appendString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
         });
     }];
@@ -104,8 +98,8 @@
     }
     [task setStandardOutput:pipe];
     [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
-        dispatch_async(dispatch_get_main_queue(), ^{
         NSData *data = [file availableData]; // this will read to EOF, so call only once
+        dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf appendString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
         });
     }];

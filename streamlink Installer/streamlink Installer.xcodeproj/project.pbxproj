@@ -11,6 +11,8 @@
 		9138A4DD1E887AA3004F3FC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9138A4DC1E887AA3004F3FC6 /* main.m */; };
 		9138A4DF1E887AA3004F3FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9138A4DE1E887AA3004F3FC6 /* Assets.xcassets */; };
 		9138A4E21E887AA3004F3FC6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9138A4E01E887AA3004F3FC6 /* MainMenu.xib */; };
+		9138A50B1E887B8C004F3FC6 /* streamlinkinstall.m in Sources */ = {isa = PBXBuildFile; fileRef = 9138A5091E887B8C004F3FC6 /* streamlinkinstall.m */; };
+		9138A50D1E887B90004F3FC6 /* streamlinkinstall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9138A50F1E887B90004F3FC6 /* streamlinkinstall.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,9 @@
 		9138A4DE1E887AA3004F3FC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9138A4E11E887AA3004F3FC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9138A4E31E887AA3004F3FC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9138A5081E887B8C004F3FC6 /* streamlinkinstall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streamlinkinstall.h; sourceTree = "<group>"; };
+		9138A5091E887B8C004F3FC6 /* streamlinkinstall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = streamlinkinstall.m; sourceTree = "<group>"; };
+		9138A50E1E887B90004F3FC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/streamlinkinstall.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +63,9 @@
 				9138A4DE1E887AA3004F3FC6 /* Assets.xcassets */,
 				9138A4E01E887AA3004F3FC6 /* MainMenu.xib */,
 				9138A4E31E887AA3004F3FC6 /* Info.plist */,
+				9138A5081E887B8C004F3FC6 /* streamlinkinstall.h */,
+				9138A5091E887B8C004F3FC6 /* streamlinkinstall.m */,
+				9138A50F1E887B90004F3FC6 /* streamlinkinstall.xib */,
 				9138A4DB1E887AA3004F3FC6 /* Supporting Files */,
 			);
 			path = "streamlink Installer";
@@ -131,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9138A4DF1E887AA3004F3FC6 /* Assets.xcassets in Resources */,
+				9138A50D1E887B90004F3FC6 /* streamlinkinstall.xib in Resources */,
 				9138A4E21E887AA3004F3FC6 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9138A4DD1E887AA3004F3FC6 /* main.m in Sources */,
+				9138A50B1E887B8C004F3FC6 /* streamlinkinstall.m in Sources */,
 				9138A4DA1E887AA3004F3FC6 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +166,14 @@
 				9138A4E11E887AA3004F3FC6 /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		9138A50F1E887B90004F3FC6 /* streamlinkinstall.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9138A50E1E887B90004F3FC6 /* Base */,
+			);
+			name = streamlinkinstall.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -293,6 +311,7 @@
 				9138A4E81E887AA3004F3FC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
