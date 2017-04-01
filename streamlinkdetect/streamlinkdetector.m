@@ -86,6 +86,27 @@
     }
     return @[];
 }
+-(NSDictionary *)detectAndRetrieveInfo{
+    NSTask *task;
+    task = [[NSTask alloc] init];
+    task.launchPath = @"/bin/ps";
+    task.arguments = @[@"-ax"];
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    task.standardOutput = pipe;
+    
+    NSFileHandle *file;
+    file = pipe.fileHandleForReading;
+    
+    [task launch];
+    
+    NSData *data;
+    data = [file readDataToEndOfFile];
+    NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    string = [[ezregex new] findMatch:string pattern:@"streamlink (https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})" rangeatindex:0];
+    string = [string stringByReplacingOccurrencesOfString:@"streamlink " withString:@""];
+    return [MediaStreamParse parse:@[[StreamInfoRetrieval retrieveStreamInfo:string]]];
+}
 -(void)checkStreamLink:(NSWindow *)w{
     if (![self checkifPythonExists]){
         if (![self checkifHomebrewExists]){

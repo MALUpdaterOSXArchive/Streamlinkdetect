@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9138A4DA1E887AA3004F3FC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9138A4D91E887AA3004F3FC6 /* AppDelegate.m */; };
 		9138A4DD1E887AA3004F3FC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9138A4DC1E887AA3004F3FC6 /* main.m */; };
-		9138A4DF1E887AA3004F3FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9138A4DE1E887AA3004F3FC6 /* Assets.xcassets */; };
 		9138A4E21E887AA3004F3FC6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9138A4E01E887AA3004F3FC6 /* MainMenu.xib */; };
 		9138A50B1E887B8C004F3FC6 /* streamlinkinstall.m in Sources */ = {isa = PBXBuildFile; fileRef = 9138A5091E887B8C004F3FC6 /* streamlinkinstall.m */; };
 		9138A50D1E887B90004F3FC6 /* streamlinkinstall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9138A50F1E887B90004F3FC6 /* streamlinkinstall.xib */; };
@@ -20,7 +19,6 @@
 		9138A4D81E887AA3004F3FC6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9138A4D91E887AA3004F3FC6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9138A4DC1E887AA3004F3FC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9138A4DE1E887AA3004F3FC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9138A4E11E887AA3004F3FC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9138A4E31E887AA3004F3FC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9138A5081E887B8C004F3FC6 /* streamlinkinstall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streamlinkinstall.h; sourceTree = "<group>"; };
@@ -60,7 +58,6 @@
 			children = (
 				9138A4D81E887AA3004F3FC6 /* AppDelegate.h */,
 				9138A4D91E887AA3004F3FC6 /* AppDelegate.m */,
-				9138A4DE1E887AA3004F3FC6 /* Assets.xcassets */,
 				9138A4E01E887AA3004F3FC6 /* MainMenu.xib */,
 				9138A4E31E887AA3004F3FC6 /* Info.plist */,
 				9138A5081E887B8C004F3FC6 /* streamlinkinstall.h */,
@@ -138,7 +135,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9138A4DF1E887AA3004F3FC6 /* Assets.xcassets in Resources */,
 				9138A50D1E887B90004F3FC6 /* streamlinkinstall.xib in Resources */,
 				9138A4E21E887AA3004F3FC6 /* MainMenu.xib in Resources */,
 			);
@@ -286,6 +282,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9HDZTER525;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = "streamlink Installer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
