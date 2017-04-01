@@ -44,3 +44,39 @@ build/streamlinkdetect.build/Release/streamlinkdetect.build/streamlinkdetect-own
 build/streamlinkdetect.build/Release/streamlinkdetect.build/streamlinkdetect-project-headers.hmap
 build/streamlinkdetect.build/Release/streamlinkdetect.build/streamlinkdetect.hmap
 build/streamlinkdetect.build/all-product-headers.yaml
+build/Release/streamlinkdetect.framework/Versions/A/Resources/streamlink Installer.app/Contents/Info.plist
+build/Release/streamlinkdetect.framework/Versions/A/Resources/streamlink Installer.app/Contents/MacOS/streamlink Installer
+build/Release/streamlinkdetect.framework/Versions/A/Resources/streamlink Installer.app/Contents/PkgInfo
+build/Release/streamlinkdetect.framework/Versions/A/Resources/streamlink Installer.app/Contents/Resources/Base.lproj/MainMenu.nib
+build/Release/streamlinkdetect.framework/Versions/A/Resources/streamlink Installer.app/Contents/Resources/Base.lproj/streamlinkinstall.nib
+build/Release/streamlinkdetect.framework/Versions/A/Resources/streamlink Installer.app/Contents/_CodeSignature/CodeResources
+streamlink Installer/build/Release/streamlink Installer.app.dSYM/Contents/Info.plist
+streamlink Installer/build/Release/streamlink Installer.app.dSYM/Contents/Resources/DWARF/streamlink Installer
+streamlink Installer/build/Release/streamlink Installer.app/Contents/Info.plist
+streamlink Installer/build/Release/streamlink Installer.app/Contents/MacOS/streamlink Installer
+streamlink Installer/build/Release/streamlink Installer.app/Contents/PkgInfo
+streamlink Installer/build/Release/streamlink Installer.app/Contents/Resources/Base.lproj/MainMenu.nib
+streamlink Installer/build/Release/streamlink Installer.app/Contents/Resources/Base.lproj/streamlinkinstall.nib
+streamlink Installer/build/Release/streamlink Installer.app/Contents/_CodeSignature/CodeResources
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/MainMenu-PartialInfo.plist
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/Objects-normal/x86_64/AppDelegate.d
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/Objects-normal/x86_64/AppDelegate.dia
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/Objects-normal/x86_64/AppDelegate.o
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/Objects-normal/x86_64/main.d
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/Objects-normal/x86_64/main.dia
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/Objects-normal/x86_64/main.o
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/Objects-normal/x86_64/streamlink Installer.LinkFileList
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/Objects-normal/x86_64/streamlink Installer_dependency_info.dat
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/Objects-normal/x86_64/streamlinkinstall.d
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/Objects-normal/x86_64/streamlinkinstall.dia
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/Objects-normal/x86_64/streamlinkinstall.o
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/dgph
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/dgph~
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/streamlink Installer-all-non-framework-target-headers.hmap
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/streamlink Installer-all-target-headers.hmap
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/streamlink Installer-generated-files.hmap
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/streamlink Installer-own-target-headers.hmap
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/streamlink Installer-project-headers.hmap
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/streamlink Installer.hmap
+streamlink Installer/build/streamlink Installer.build/Release/streamlink Installer.build/streamlinkinstall-PartialInfo.plist
+streamlink Installer/build/streamlink Installer.build/all-product-headers.yaml
