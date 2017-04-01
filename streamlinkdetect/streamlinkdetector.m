@@ -86,7 +86,7 @@
     }
     return @[];
 }
--(NSDictionary *)detectAndRetrieveInfo{
+-(NSArray *)detectAndRetrieveInfo{
     NSTask *task;
     task = [[NSTask alloc] init];
     task.launchPath = @"/bin/ps";

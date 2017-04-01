@@ -84,8 +84,9 @@
 -(NSArray *)getAvailableStreams;
 /**
  This method detects a current stream playing and then returns the stream information.
+@return NSArray The stream's information (title, episode, season, site)
  */
--(NSDictionary *)detectAndRetrieveInfo;
+-(NSArray *)detectAndRetrieveInfo;
 /**
  This method checks if streamlink is intalled. If not, you can prompt to install it.
  @pram w The window to attach the dialog to as a sheet
