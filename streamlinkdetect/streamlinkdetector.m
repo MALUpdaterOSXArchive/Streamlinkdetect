@@ -37,6 +37,7 @@
 -(void)startStream{
     task = [[NSTask alloc] init];
     [task setLaunchPath:@"/usr/local/bin/streamlink"];
+    task.environment = @{@"PATH":@"/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"};
     if ([[self args] length] > 0){
         [task setArguments:@[[self args], [self streamurl], [self stream]]];
     }
@@ -188,5 +189,6 @@
     
     [[NSWorkspace sharedWorkspace] launchApplication:helperAppPath];
 }
+
 
 @end
