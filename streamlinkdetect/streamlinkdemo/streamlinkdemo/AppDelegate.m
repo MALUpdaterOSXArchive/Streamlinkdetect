@@ -19,6 +19,7 @@
     // Insert code here to initialize your application
     detector = [streamlinkdetector new];
     [detector checkStreamLink:nil];
+    [detector setDelegate:self];
 }
 
 
@@ -87,5 +88,10 @@
     }
     return false;
 }
-
+- (void)streamDidBegin{
+    NSLog(@"stream start");
+}
+- (void)streamDidEnd{
+    NSLog(@"stream stopped");
+}
 @end

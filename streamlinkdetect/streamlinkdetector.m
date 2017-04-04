@@ -26,6 +26,21 @@
 #import "ezregex.h"
 
 @implementation streamlinkdetector
+struct {
+    unsigned int didBegin:1;
+    unsigned int didEnd:1;
+} delegateRespondsTo;
+
+@synthesize delegate;
+
+- (void)setDelegate:(id <streamlinkdetectordelegate>)aDelegate {
+    if (delegate != aDelegate) {
+        delegate = aDelegate;
+        
+        delegateRespondsTo.didBegin = [delegate respondsToSelector:@selector(streamDidBegin)];
+        delegateRespondsTo.didEnd = [delegate respondsToSelector:@selector(streamDidBegin)];
+    }
+}
 -(bool)getDetectionInfo{
     NSDictionary * sinfo = [StreamInfoRetrieval retrieveStreamInfo:[self streamurl]];
     if (sinfo){
@@ -56,10 +71,11 @@
     [task setTerminationHandler:^(NSTask *task) {
         [task.standardOutput fileHandleForReading].readabilityHandler = nil;
         _isstreaming = false;
+        [delegate streamDidEnd];
         }];
     [task launch];
     _isstreaming = true;
-
+    [delegate streamDidBegin];
 }
 -(void)stopStream{
     if (task){

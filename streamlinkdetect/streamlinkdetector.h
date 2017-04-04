@@ -22,6 +22,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
+#import "streamlinkdetectordelegate.h"
 
 @class streamlinkinstall;
 
@@ -64,7 +65,14 @@
  @return bool Streamlinker's state.
  */
 @property (getter=getStreamStatus) bool isstreaming;
-
+/**
+ The delegate for the detector
+ */
+@property (nonatomic, weak) id <streamlinkdetectordelegate> delegate;
+/**
+ This method allows you to set a streamlinkdetect delegate.
+ */
+- (void)setDelegate:(id <streamlinkdetectordelegate>)aDelegate;
 /**
  This method retrieves the stream information of a URL.
  @return bool Specifies if the stream information retrieval is successful or not.
