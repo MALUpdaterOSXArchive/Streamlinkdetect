@@ -35,9 +35,9 @@
 		91056D351E81A2C0009F20CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		91056D381E81A2C0009F20CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		91056D3A1E81A2C0009F20CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		91056D3D1E81A2C0009F20CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		91056D3F1E81A2C0009F20CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91056D591E81A655009F20CC /* streamlinkdetect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = streamlinkdetect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91CA0EAA1E9698C500A0D532 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +173,7 @@
 		91056D3C1E81A2C0009F20CC /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				91056D3D1E81A2C0009F20CC /* Base */,
+				91CA0EAA1E9698C500A0D532 /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 				DEVELOPMENT_TEAM = 9HDZTER525;
 				INFOPLIST_FILE = streamlinkdemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.ateliershiori.streamlinkdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -290,7 +290,7 @@
 				DEVELOPMENT_TEAM = 9HDZTER525;
 				INFOPLIST_FILE = streamlinkdemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.ateliershiori.streamlinkdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

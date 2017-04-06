@@ -60,7 +60,7 @@
         pipe = [[NSPipe alloc] init];
     }
     [task setStandardOutput:pipe];
-    __weak typeof(self) weakSelf = self;
+    __unsafe_unretained typeof(self) weakSelf = self;
     [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
         NSData *data = [file availableData]; // this will read to EOF, so call only once
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -84,7 +84,7 @@
 }
 -(void)installStreamLink{
     task = nil;
-    __weak typeof(self) weakSelf = self;
+    __unsafe_unretained typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [_progressind startAnimation:nil];
         weakSelf.statuslbl.stringValue = @"Installing streamlink.";
