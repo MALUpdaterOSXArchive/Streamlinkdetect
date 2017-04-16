@@ -64,11 +64,7 @@
             <h1>streamlinkdetector</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="k">@interface</span> <span class="nc">streamlinkdetector</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="p">{</span>
-  <span class="n">NSTask</span> <span class="o">*</span><span class="n">task</span><span class="p">;</span>
-  <span class="n">NSPipe</span> <span class="o">*</span><span class="n">pipe</span><span class="p">;</span>
-  <span class="n">streamlinkinstall</span> <span class="o">*</span><span class="n">streamlinkinstallw</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+                  <pre class="highlight"><code><span class="k">@interface</span> <span class="nc">streamlinkdetector</span> <span class="p">:</span> <span class="nc">NSObject</span></code></pre>
 
                 </div>
               </div>
@@ -81,9 +77,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:objc(cs)streamlinkdetector@task"></a>
-                    <a name="//apple_ref/objc/Ivar/task" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)streamlinkdetector@task">task</a>
+                    <a name="/c:objc(cs)streamlinkdetector(py)task"></a>
+                    <a name="//apple_ref/objc/Property/task" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)streamlinkdetector(py)task">task</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -98,7 +94,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight"><code><span class="n">NSTask</span> <span class="o">*</span><span class="n">task</span></code></pre>
+                          <pre class="highlight"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="n">NSTask</span> <span class="o">*</span><span class="n">task</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">task</span><span class="p">:</span> <span class="kt">Process</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -111,9 +112,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:objc(cs)streamlinkdetector@pipe"></a>
-                    <a name="//apple_ref/objc/Ivar/pipe" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)streamlinkdetector@pipe">pipe</a>
+                    <a name="/c:objc(cs)streamlinkdetector(py)pipe"></a>
+                    <a name="//apple_ref/objc/Property/pipe" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)streamlinkdetector(py)pipe">pipe</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -128,7 +129,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight"><code><span class="n">NSPipe</span> <span class="o">*</span><span class="n">pipe</span></code></pre>
+                          <pre class="highlight"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="n">NSPipe</span> <span class="o">*</span><span class="n">pipe</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">pipe</span><span class="p">:</span> <span class="kt">Pipe</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -141,9 +147,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:objc(cs)streamlinkdetector@streamlinkinstallw"></a>
-                    <a name="//apple_ref/objc/Ivar/streamlinkinstallw" class="dashAnchor"></a>
-                    <a class="token" href="#/c:objc(cs)streamlinkdetector@streamlinkinstallw">streamlinkinstallw</a>
+                    <a name="/c:objc(cs)streamlinkdetector(py)streamlinkinstallw"></a>
+                    <a name="//apple_ref/objc/Property/streamlinkinstallw" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)streamlinkdetector(py)streamlinkinstallw">streamlinkinstallw</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -158,7 +164,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Objective-C</p>
-                          <pre class="highlight"><code><span class="n">streamlinkinstall</span> <span class="o">*</span><span class="n">streamlinkinstallw</span></code></pre>
+                          <pre class="highlight"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="n">streamlinkinstall</span> <span class="o">*</span><span class="n">streamlinkinstallw</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">streamlinkinstallw</span><span class="p">:</span> <span class="n">streamlinkinstall</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -198,7 +209,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L49">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L48">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -233,7 +244,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L53">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -268,7 +279,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L57">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L56">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -310,7 +321,7 @@
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L62">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L61">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -351,7 +362,7 @@
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L67">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L66">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -386,7 +397,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L71">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L70">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -427,7 +438,7 @@
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L80">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L79">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -462,7 +473,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L84">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L83">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -497,7 +508,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L88">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L87">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -532,7 +543,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L92">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L91">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -573,7 +584,7 @@
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L97">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L96">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -629,7 +640,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L102">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L101">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -670,7 +681,7 @@
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L107">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L106">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -705,7 +716,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L111">Show on GitHub</a>
+                        <a href="https://github.com/Atelier-Shiori/Streamlinkdetect/streamlinkdetect/streamlinkdetector.h#L110">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -715,7 +726,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://ateliershiori.moe" target="_blank" rel="external">Atelier Shiori</a>. All rights reserved. (Last updated: 2017-04-04)</p>
+          <p>&copy; 2017 <a class="link" href="https://ateliershiori.moe" target="_blank" rel="external">Atelier Shiori</a>. All rights reserved. (Last updated: 2017-04-16)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -23,7 +23,7 @@
 
 @implementation ezregex
 
--(BOOL)checkMatch:(NSString *)string pattern:(NSString *)pattern{
+-(BOOL)checkMatch:(NSString *)string pattern:(NSString *)pattern {
     NSError *errRegex = NULL;
     NSRegularExpression *regex = [NSRegularExpression
                                   regularExpressionWithPattern:pattern
@@ -31,18 +31,20 @@
                                   error:&errRegex];
     NSRange  searchrange = NSMakeRange(0, [string length]);
     NSRange matchRange = [regex rangeOfFirstMatchInString:string options:NSMatchingReportProgress range:searchrange];
-    if (matchRange.location != NSNotFound)
+    if (matchRange.location != NSNotFound) {
         return true;
-        else
+    }
+    else {
         return false;
+    }
 }
--(NSString *)searchreplace:(NSString *)string pattern:(NSString *)pattern{
+-(NSString *)searchreplace:(NSString *)string pattern:(NSString *)pattern {
     NSError *errRegex = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&errRegex];
     NSString * newString = [regex stringByReplacingMatchesInString:string options:0 range:NSMakeRange(0, [string length]) withTemplate:@""];
     return newString;
 }
--(NSString *)findMatch:(NSString *)string pattern:(NSString *)pattern rangeatindex:(int)ri{
+-(NSString *)findMatch:(NSString *)string pattern:(NSString *)pattern rangeatindex:(int)ri {
     NSError *errRegex = NULL;
     NSRegularExpression *regex = [NSRegularExpression
                                   regularExpressionWithPattern:pattern
@@ -51,7 +53,7 @@
     NSRange  searchrange = NSMakeRange(0, [string length]);
     NSTextCheckingResult *match = [regex firstMatchInString:string options:0 range: searchrange];
     NSRange matchRange = [regex rangeOfFirstMatchInString:string options:NSMatchingReportProgress range:searchrange];
-    if (matchRange.location != NSNotFound){
+    if (matchRange.location != NSNotFound) {
         return [string substringWithRange:[match rangeAtIndex:ri]];
     }
     return @"";

@@ -29,20 +29,19 @@
 /**
  This class allows you run a stream with streamlink and obtain stream information (title, episode, site)
  */
-@interface streamlinkdetector : NSObject{
-    /**
-     The task that executes streamlink
-     */
-    NSTask * task;
-    /**
-     This returns the output from streamlink.
-     */
-    NSPipe * pipe;
-    /**
-     The Streamlink install window.
-     */
-    streamlinkinstall * streamlinkinstallw;
-}
+@interface streamlinkdetector : NSObject
+/**
+ The task that executes streamlink
+ */
+@property (strong) NSTask * task;
+/**
+ This returns the output from streamlink.
+ */
+@property (strong) NSPipe * pipe;
+/**
+ The Streamlink install window.
+ */
+@property (strong) streamlinkinstall * streamlinkinstallw;
 /**
  This specifies the streamURL
  */

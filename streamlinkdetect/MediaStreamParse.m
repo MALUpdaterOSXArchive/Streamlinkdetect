@@ -26,7 +26,7 @@
 #import "ezregex.h"
 
 @implementation MediaStreamParse
-+(NSArray *)parse:(NSArray *)pages{
++(NSArray *)parse:(NSArray *)pages {
      NSMutableArray * final = [[NSMutableArray alloc] init];
     ezregex * ez = [[ezregex alloc] init];
     //Perform Regex and sanitize
@@ -94,7 +94,7 @@
                 else
                     continue; // Invalid address
             }
-            else{
+            else {
                 continue;
             }
         
@@ -108,21 +108,21 @@
                     season = (NSNumber *)seasondata[@"season"];
                     title = seasondata[@"title"];
                 }
-                else{
+                else {
                    season = @(1);
                 }
             }
-            else{
+            else {
                 season = [[[NSNumberFormatter alloc] init] numberFromString:tmpseason];
             }
             //Trim Whitespace
             title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             tmpepisode = [tmpepisode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             // Final Checks
-            if ([tmpepisode length] ==0){
+            if ([tmpepisode length] ==0) {
                 episode = @(0);
             }
-            else{
+            else {
                 episode = [[[NSNumberFormatter alloc] init] numberFromString:tmpepisode];
             }
             if (title.length == 0) {
@@ -135,7 +135,7 @@
     }
     return final;
 }
-+(NSDictionary *)checkSeason:(NSString *) title{
++(NSDictionary *)checkSeason:(NSString *) title {
     // Parses season
     ezregex * ez = [ezregex new];
     NSString * tmpseason;
@@ -156,7 +156,7 @@
     }
     return result;
 }
-+(int)recognizeseason:(NSString *)season{
++(int)recognizeseason:(NSString *)season {
     if ([season caseInsensitiveCompare:@"second season"] == NSOrderedSame)
         return 2;
     else if ([season caseInsensitiveCompare:@"third season"] == NSOrderedSame)

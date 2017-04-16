@@ -9,9 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import <streamlinkdetect/streamlinkdetect.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, streamlinkdetectordelegate>{
-    streamlinkdetector * detector;
-}
+@interface AppDelegate : NSObject <NSApplicationDelegate, streamlinkdetectordelegate>
+@property (strong)  streamlinkdetector * detector;
 @property (weak) IBOutlet NSTextField *args;
 @property (weak) IBOutlet NSTextField *streamurl;
 @property (weak) IBOutlet NSTextField *stream;

@@ -23,10 +23,9 @@
 
 #import "streamlinkinstall.h"
 
-@interface streamlinkinstall (){
-    NSTask * task;
-    NSPipe * pipe;
-}
+@interface streamlinkinstall ()
+@property (strong) NSTask * task;
+@property (strong) NSPipe * pipe;
 
 @end
 
@@ -42,34 +41,34 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     NSFileManager *filemanager = [NSFileManager defaultManager];
     NSString * fullfilenamewithpath = @"/usr/local/bin/python";
-    if (![filemanager fileExistsAtPath:fullfilenamewithpath]){
+    if (![filemanager fileExistsAtPath:fullfilenamewithpath]) {
         [self installPython];
     }
-    else{
+    else {
         [self installStreamLink];
     }
 }
 -(void)installPython{
     [_progressind startAnimation:nil];
-    task = [NSTask new];
+    _task = [NSTask new];
     _statuslbl.stringValue = @"Installing Python from Homebrew.";
-    [task setLaunchPath:@"/usr/local/Homebrew/bin/brew"];
-    [task setArguments:@[@"install", @"python"]];
-    pipe = nil;
-    if (!pipe){
-        pipe = [[NSPipe alloc] init];
+    [_task setLaunchPath:@"/usr/local/Homebrew/bin/brew"];
+    [_task setArguments:@[@"install", @"python"]];
+    _pipe = nil;
+    if (!pipe) {
+        _pipe = [[NSPipe alloc] init];
     }
-    [task setStandardOutput:pipe];
+    [_task setStandardOutput:_pipe];
     __unsafe_unretained typeof(self) weakSelf = self;
-    [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+    [[_task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
         NSData *data = [file availableData]; // this will read to EOF, so call only once
         dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf appendString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
         });
     }];
-    [task setTerminationHandler:^(NSTask *task2) {
+    [_task setTerminationHandler:^(NSTask *task2) {
         [task2.standardOutput fileHandleForReading].readabilityHandler = nil;
-        if ([task2 terminationStatus] != 0){
+        if ([task2 terminationStatus] != 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf appendString:@"Python install failed!"];
                 [weakSelf setStatusLabel:[task2 terminationStatus]];
@@ -79,40 +78,40 @@
             [weakSelf installStreamLink];
         }
     }];
-    [task launch];
+    [_task launch];
 
 }
 -(void)installStreamLink{
-    task = nil;
+    _task = nil;
     __unsafe_unretained typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [_progressind startAnimation:nil];
         weakSelf.statuslbl.stringValue = @"Installing streamlink.";
     });
-    task = [NSTask new];
-    [task setLaunchPath:@"/usr/local/bin/easy_install"];
-    [task setArguments:@[@"-U", @"streamlink"]];
-    pipe = nil;
-    if (!pipe){
-        pipe = [[NSPipe alloc] init];
+    _task = [NSTask new];
+    [_task setLaunchPath:@"/usr/local/bin/easy_install"];
+    [_task setArguments:@[@"-U", @"streamlink"]];
+    _pipe = nil;
+    if (!_pipe) {
+        _pipe = [[NSPipe alloc] init];
     }
-    [task setStandardOutput:pipe];
-    [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+    [_task setStandardOutput:_pipe];
+    [[_task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
         NSData *data = [file availableData]; // this will read to EOF, so call only once
         dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf appendString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
         });
     }];
-    [task setTerminationHandler:^(NSTask *task2) {
+    [_task setTerminationHandler:^(NSTask *task2) {
         [task2.standardOutput fileHandleForReading].readabilityHandler = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
-        if ([task2 terminationStatus] != 0){
+        if ([task2 terminationStatus] != 0) {
             [weakSelf appendString:@"Install failed"];
         }
         [weakSelf setStatusLabel:[task2 terminationStatus]];
         });
     }];
-    [task launch];
+    [_task launch];
 }
 -(void)appendString:(NSString *)append{
     BOOL scroll = (NSMaxY(_consoletext.visibleRect) == NSMaxY(_consoletext.bounds));
@@ -121,7 +120,7 @@
         [_consoletext scrollRangeToVisible: NSMakeRange(_consoletext.string.length, 0)];
 }
 -(void)setStatusLabel:(int)exit{
-    switch (exit){
+    switch (exit) {
         case 0:
             _statuslbl.stringValue = @"Installation successful";
             break;

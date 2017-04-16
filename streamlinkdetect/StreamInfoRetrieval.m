@@ -13,7 +13,7 @@
 NSString *const supportedSites = @"(crunchyroll|daisuki|animelab|funimation)";
 +(NSDictionary *)retrieveStreamInfo:(NSString*) URL{
     NSString * site = [self checkURL:URL];
-    if (site.length > 0){
+    if (site.length > 0) {
         // Retrieves information about stream
         // Send a synchronous request
         NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URL]];
@@ -39,11 +39,13 @@ NSString *const supportedSites = @"(crunchyroll|daisuki|animelab|funimation)";
         [dataTask resume];
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         // Parse data
-        if (urlresponse.statusCode == 200){
+        if (urlresponse.statusCode == 200) {
             NSString * dom = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSString * title = [StreamInfoRetrieval getPageTitle:dom];
             NSString * browser = @"streamlink";
-            return @{ @"title":title, @"DOM":dom, @"url":URL, @"browser":browser, @"site":site};
+            if (title && dom && site) {
+                return @{ @"title":title, @"DOM":dom, @"url":URL, @"browser":browser, @"site":site};
+            }
         }
     }
     return nil;

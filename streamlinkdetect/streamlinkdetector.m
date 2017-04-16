@@ -43,43 +43,45 @@ struct {
 }
 -(bool)getDetectionInfo{
     NSDictionary * sinfo = [StreamInfoRetrieval retrieveStreamInfo:[self streamurl]];
-    if (sinfo){
+    if (sinfo) {
         _detectioninfo = [MediaStreamParse parse:[NSArray arrayWithObjects:sinfo, nil]];
         return true;
     }
     return false;
 }
 -(void)startStream{
-    task = [[NSTask alloc] init];
-    [task setLaunchPath:@"/usr/local/bin/streamlink"];
-    task.environment = @{@"PATH":@"/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"};
-    if ([[self args] length] > 0){
-        [task setArguments:@[[self args], [self streamurl], [self stream]]];
+    _task = [[NSTask alloc] init];
+    [_task setLaunchPath:@"/usr/local/bin/streamlink"];
+    _task.environment = @{@"PATH":@"/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"};
+    if ([[self args] length] > 0) {
+        [_task setArguments:@[[self args], [self streamurl], [self stream]]];
     }
-    else{
-        [task setArguments:@[[self streamurl], [self stream]]];
+    else {
+        [_task setArguments:@[[self streamurl], [self stream]]];
     }
-    pipe = nil;
-    if (!pipe){
-        pipe = [[NSPipe alloc] init];
+    _pipe = nil;
+    if (!pipe) {
+        _pipe = [[NSPipe alloc] init];
     }
-    [task setStandardOutput:pipe];
-    [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+    [_task setStandardOutput:_pipe];
+    [[_task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
         NSData *data = [file availableData]; // this will read to EOF, so call only once
-        NSLog(@"Streamlink: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSString * avilstring = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"Streamlink: %@", avilstring);
+        [self checkPluginError:avilstring];
     }];
-    [task setTerminationHandler:^(NSTask *task) {
+    [_task setTerminationHandler:^(NSTask *task) {
         [task.standardOutput fileHandleForReading].readabilityHandler = nil;
         _isstreaming = false;
         [delegate streamDidEnd];
         }];
-    [task launch];
+    [_task launch];
     _isstreaming = true;
     [delegate streamDidBegin];
 }
 -(void)stopStream{
-    if (task){
-        [task terminate];
+    if (_task) {
+        [_task terminate];
     }
 }
 -(NSArray *)getAvailableStreams{
@@ -90,9 +92,9 @@ struct {
     task2.standardOutput = pipe2;
     NSFileHandle *file = pipe2.fileHandleForReading;
     [task2 launch];
-    [task waitUntilExit];
-    int status = [task terminationStatus];
-    if (status == 0){
+    [_task waitUntilExit];
+    int status = [_task terminationStatus];
+    if (status == 0) {
         NSData *data = [file readDataToEndOfFile];
         NSString * output = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
         output = [[ezregex new] findMatch:output pattern:@"Available streams:*.*" rangeatindex:0];
@@ -122,7 +124,7 @@ struct {
     NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
     NSString *pattern = @"streamlink (https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
     ezregex * regex = [ezregex new];
-    if([regex checkMatch:string pattern:pattern]){
+    if([regex checkMatch:string pattern:pattern]) {
         string = [regex findMatch:string pattern:pattern rangeatindex:0];
         string = [string stringByReplacingOccurrencesOfString:@"streamlink " withString:@""];
         return [MediaStreamParse parse:@[[StreamInfoRetrieval retrieveStreamInfo:string]]];
@@ -130,24 +132,31 @@ struct {
     return nil;
 }
 -(void)checkStreamLink:(NSWindow *)w{
-    if (![self checkifPythonExists]){
-        if (![self checkifHomebrewExists]){
+    if (![self checkifPythonExists]) {
+        if (![self checkifHomebrewExists]) {
             [self showHomebrewNotInstalledAlert];
         }
-        else if (![self checkifStreamLinkExists]){
+        else if (![self checkifStreamLinkExists]) {
             [self showStreamLinkNotInstalledAlert:w];
         }
     }
-    else{
-        if (![self checkifStreamLinkExists]){
+    else {
+        if (![self checkifStreamLinkExists]) {
             [self showStreamLinkNotInstalledAlert:w];
         }
+    }
+}
+-(void)checkPluginError:(NSString *)errorstr{
+    ezregex * regex = [ezregex new];
+    if ([regex checkMatch:errorstr pattern:@"\\[error\\]*.*"]) {
+        [self stopStream];
+        [self showAlert:NSLocalizedString(@"This stream is not supported.",@"not_supported") withExplaination:[[regex findMatch:errorstr pattern:@"\\[error\\]*.*" rangeatindex:0] stringByReplacingOccurrencesOfString:@"[error] " withString:@""]];
     }
 }
 -(bool)checkifStreamLinkExists{
     NSFileManager *filemanager = [NSFileManager defaultManager];
     NSString * fullfilenamewithpath = @"/usr/local/bin/streamlink";
-    if ([filemanager fileExistsAtPath:fullfilenamewithpath]){
+    if ([filemanager fileExistsAtPath:fullfilenamewithpath]) {
         return true;
     }
     return false;
@@ -155,7 +164,7 @@ struct {
 -(bool)checkifPythonExists{
     NSFileManager *filemanager = [NSFileManager defaultManager];
     NSString * fullfilenamewithpath = @"/usr/local/bin/python";
-    if ([filemanager fileExistsAtPath:fullfilenamewithpath]){
+    if ([filemanager fileExistsAtPath:fullfilenamewithpath]) {
         return true;
     }
     return false;
@@ -163,13 +172,13 @@ struct {
 -(bool)checkifHomebrewExists{
     NSFileManager *filemanager = [NSFileManager defaultManager];
     NSString * fullfilenamewithpath = @"/usr/local/bin/brew";
-    if ([filemanager fileExistsAtPath:fullfilenamewithpath]){
+    if ([filemanager fileExistsAtPath:fullfilenamewithpath]) {
         return true;
     }
     return false;
 }
 -(void)showHomebrewNotInstalledAlert{
-    // Shows Donation Reminder
+    // Shows Not Installed
     NSAlert * alert = [[NSAlert alloc] init] ;
     [alert addButtonWithTitle:NSLocalizedString(@"Yes",nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"No",nil)];
@@ -184,7 +193,7 @@ struct {
     }
 }
 -(void)showStreamLinkNotInstalledAlert:(NSWindow *)w{
-    // Shows Donation Reminder
+    // Shows Not Installed
     NSAlert * alert = [[NSAlert alloc] init] ;
     [alert addButtonWithTitle:NSLocalizedString(@"Yes",nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"No",nil)];
@@ -197,6 +206,17 @@ struct {
     if (choice == NSAlertFirstButtonReturn) {
         [self installStreamLink];
     }
+}
+-(void)showAlert:(NSString *)title withExplaination:(NSString *)explaination{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSAlert * alert = [[NSAlert alloc] init] ;
+        [alert setMessageText:title];
+        [alert setInformativeText:explaination];
+        [alert setShowsSuppressionButton:NO];
+        // Set Message type to Warning
+        [alert setAlertStyle:NSInformationalAlertStyle];
+        [alert runModal];
+    });
 }
 -(void)installStreamLink{
     NSBundle *mainBundle = [NSBundle bundleForClass:[self class]];

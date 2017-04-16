@@ -17,9 +17,9 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    detector = [streamlinkdetector new];
-    [detector checkStreamLink:nil];
-    [detector setDelegate:self];
+    _detector = [streamlinkdetector new];
+    [_detector checkStreamLink:nil];
+    [_detector setDelegate:self];
 }
 
 
@@ -29,28 +29,28 @@
 
 
 - (IBAction)startstream:(id)sender {
-    [detector setargs:_args.stringValue];
-    [detector setStreamURL:_streamurl.stringValue];
-    [detector setStream:_stream.stringValue];
-    if (![detector getStreamStatus]){
-        [detector startStream];
+    [_detector setargs:_args.stringValue];
+    [_detector setStreamURL:_streamurl.stringValue];
+    [_detector setStream:_stream.stringValue];
+    if (![_detector getStreamStatus]) {
+        [_detector startStream];
     }
 }
 
 - (IBAction)stopstream:(id)sender {
-    if ([detector getStreamStatus]){
-        [detector stopStream];
+    if ([_detector getStreamStatus]) {
+        [_detector stopStream];
     }
 }
 
 - (IBAction)loadinfo:(id)sender {
-    [detector setStreamURL:_streamurl.stringValue];
+    [_detector setStreamURL:_streamurl.stringValue];
     dispatch_queue_t queue = dispatch_get_global_queue(
                                                        DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
-        if ([detector getDetectionInfo]){
+        if ([_detector getDetectionInfo]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                _streaminfotextview.string = [NSString stringWithFormat:@"%@",[detector getdetectinfo]];
+                _streaminfotextview.string = [NSString stringWithFormat:@"%@",[_detector getdetectinfo]];
             });
         }
     });
@@ -60,8 +60,8 @@
     dispatch_queue_t queue = dispatch_get_global_queue(
                                                        DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
-        NSArray * a = [detector detectAndRetrieveInfo];
-        if (a){
+        NSArray * a = [_detector detectAndRetrieveInfo];
+        if (a) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 _streaminfotextview.string = [NSString stringWithFormat:@"%@",a];
             });
@@ -70,11 +70,11 @@
 }
 
 - (IBAction)getAvailableStreams:(id)sender {
-    [detector setStreamURL:_streamurl.stringValue];
+    [_detector setStreamURL:_streamurl.stringValue];
     dispatch_queue_t queue = dispatch_get_global_queue(
                                                        DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
-        NSArray * streams = [detector getAvailableStreams];
+        NSArray * streams = [_detector getAvailableStreams];
         dispatch_async(dispatch_get_main_queue(), ^{
             _streaminfotextview.string = [NSString stringWithFormat:@"%@",streams];
         });
@@ -83,7 +83,7 @@
 -(bool)checkifStreamLinkExists{
     NSFileManager *filemanager = [NSFileManager defaultManager];
     NSString * fullfilenamewithpath = @"/usr/local/bin/streamlink";
-    if ([filemanager fileExistsAtPath:fullfilenamewithpath]){
+    if ([filemanager fileExistsAtPath:fullfilenamewithpath]) {
         return true;
     }
     return false;
