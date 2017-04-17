@@ -8,6 +8,7 @@
 
 #import "StreamInfoRetrieval.h"
 #import "ezregex.h"
+#import "NSString+HTML.h"
 
 @implementation StreamInfoRetrieval
 NSString *const supportedSites = @"(crunchyroll|daisuki|animelab|funimation)";
@@ -51,9 +52,12 @@ NSString *const supportedSites = @"(crunchyroll|daisuki|animelab|funimation)";
     return nil;
 }
 +(NSString *)getPageTitle:(NSString *)dom{
+    // Parses title from DOM
     ezregex * regex = [ezregex new];
     NSString * title = [regex findMatch:dom pattern:@"<title>(.*?)<\\/title>" rangeatindex:0];
     title = [regex searchreplace:title pattern:@"(<title>|<\\/title>)"];
+    //Unexcape HTML Characters
+    title = [title kv_decodeHTMLCharacterEntities];
     return title;
 }
 +(NSString *)checkURL:(NSString *)url{

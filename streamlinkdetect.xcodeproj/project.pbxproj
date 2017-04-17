@@ -18,6 +18,8 @@
 		91056D1F1E819863009F20CC /* StreamInfoRetrieval.m in Sources */ = {isa = PBXBuildFile; fileRef = 91056D1D1E819863009F20CC /* StreamInfoRetrieval.m */; };
 		9138A5101E887D4B004F3FC6 /* streamlink Installer.app in Resources */ = {isa = PBXBuildFile; fileRef = 9138A5011E887B2E004F3FC6 /* streamlink Installer.app */; };
 		913928D71E9455C800CCED20 /* streamlinkdetectordelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 913928D61E9455C800CCED20 /* streamlinkdetectordelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		916DE6341EA506E700F870D5 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 916DE6321EA506E700F870D5 /* NSString+HTML.h */; };
+		916DE6351EA506E700F870D5 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 916DE6331EA506E700F870D5 /* NSString+HTML.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		91056D451E81A2D9009F20CC /* streamlinkdemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = streamlinkdemo.xcodeproj; path = streamlinkdetect/streamlinkdemo/streamlinkdemo.xcodeproj; sourceTree = "<group>"; };
 		9138A4FC1E887B2E004F3FC6 /* streamlink Installer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "streamlink Installer.xcodeproj"; path = "streamlink Installer/streamlink Installer.xcodeproj"; sourceTree = "<group>"; };
 		913928D61E9455C800CCED20 /* streamlinkdetectordelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streamlinkdetectordelegate.h; sourceTree = "<group>"; };
+		916DE6321EA506E700F870D5 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		916DE6331EA506E700F870D5 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				91056D191E8197A1009F20CC /* ezregex.m */,
 				91056D141E81979C009F20CC /* MediaStreamParse.h */,
 				91056D151E81979C009F20CC /* MediaStreamParse.m */,
+				916DE6321EA506E700F870D5 /* NSString+HTML.h */,
+				916DE6331EA506E700F870D5 /* NSString+HTML.m */,
 				91056D091E819355009F20CC /* Info.plist */,
 			);
 			path = streamlinkdetect;
@@ -131,6 +137,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				916DE6341EA506E700F870D5 /* NSString+HTML.h in Headers */,
 				91056D121E819582009F20CC /* streamlinkdetector.h in Headers */,
 				91056D0A1E819355009F20CC /* streamlinkdetect.h in Headers */,
 				913928D71E9455C800CCED20 /* streamlinkdetectordelegate.h in Headers */,
@@ -240,6 +247,7 @@
 			files = (
 				91056D171E81979C009F20CC /* MediaStreamParse.m in Sources */,
 				91056D1B1E8197A1009F20CC /* ezregex.m in Sources */,
+				916DE6351EA506E700F870D5 /* NSString+HTML.m in Sources */,
 				91056D1F1E819863009F20CC /* StreamInfoRetrieval.m in Sources */,
 				91056D131E819582009F20CC /* streamlinkdetector.m in Sources */,
 			);
