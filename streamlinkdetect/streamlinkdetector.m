@@ -131,9 +131,9 @@ struct {
         if (info){
             return [MediaStreamParse parse:@[info]];
         }
-        return [NSArray new];
+        return nil;
     }
-    return [NSArray new];
+    return nil;
 }
 -(void)checkStreamLink:(NSWindow *)w{
     if (![self checkifPythonExists]) {
