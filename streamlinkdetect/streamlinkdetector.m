@@ -127,9 +127,13 @@ struct {
     if([regex checkMatch:string pattern:pattern]) {
         string = [regex findMatch:string pattern:pattern rangeatindex:0];
         string = [string stringByReplacingOccurrencesOfString:@"streamlink " withString:@""];
-        return [MediaStreamParse parse:@[[StreamInfoRetrieval retrieveStreamInfo:string]]];
+        NSDictionary *info = [StreamInfoRetrieval retrieveStreamInfo:string];
+        if (info){
+            return [MediaStreamParse parse:@[info]];
+        }
+        return [NSArray new];
     }
-    return nil;
+    return [NSArray new];
 }
 -(void)checkStreamLink:(NSWindow *)w{
     if (![self checkifPythonExists]) {
