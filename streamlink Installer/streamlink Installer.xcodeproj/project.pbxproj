@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DFD69D61F1E9A3F000BD1E2 /* ezregex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFD69D51F1E9A3F000BD1E2 /* ezregex.m */; };
 		9138A4DA1E887AA3004F3FC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9138A4D91E887AA3004F3FC6 /* AppDelegate.m */; };
 		9138A4DD1E887AA3004F3FC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9138A4DC1E887AA3004F3FC6 /* main.m */; };
 		9138A4E21E887AA3004F3FC6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9138A4E01E887AA3004F3FC6 /* MainMenu.xib */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DFD69D41F1E9A3F000BD1E2 /* ezregex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezregex.h; sourceTree = "<group>"; };
+		2DFD69D51F1E9A3F000BD1E2 /* ezregex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezregex.m; sourceTree = "<group>"; };
 		9138A4D51E887AA3004F3FC6 /* streamlink Installer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "streamlink Installer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9138A4D81E887AA3004F3FC6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9138A4D91E887AA3004F3FC6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 				9138A5081E887B8C004F3FC6 /* streamlinkinstall.h */,
 				9138A5091E887B8C004F3FC6 /* streamlinkinstall.m */,
 				9138A50F1E887B90004F3FC6 /* streamlinkinstall.xib */,
+				2DFD69D41F1E9A3F000BD1E2 /* ezregex.h */,
+				2DFD69D51F1E9A3F000BD1E2 /* ezregex.m */,
 				9138A4DB1E887AA3004F3FC6 /* Supporting Files */,
 			);
 			path = "streamlink Installer";
@@ -149,6 +154,7 @@
 			files = (
 				9138A4DD1E887AA3004F3FC6 /* main.m in Sources */,
 				9138A50B1E887B8C004F3FC6 /* streamlinkinstall.m in Sources */,
+				2DFD69D61F1E9A3F000BD1E2 /* ezregex.m in Sources */,
 				9138A4DA1E887AA3004F3FC6 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

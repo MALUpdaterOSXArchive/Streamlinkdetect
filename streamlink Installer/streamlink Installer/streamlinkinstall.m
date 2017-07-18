@@ -22,6 +22,7 @@
 //
 
 #import "streamlinkinstall.h"
+#import "ezregex.h"
 
 @interface streamlinkinstall ()
 @property (strong) NSTask * task;
@@ -40,20 +41,56 @@
     [super windowDidLoad];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     NSFileManager *filemanager = [NSFileManager defaultManager];
-    NSString * fullfilenamewithpath = @"/usr/local/bin/python";
-    if (![filemanager fileExistsAtPath:fullfilenamewithpath]) {
+    NSString *pythonversion = [self getPythonVersion];
+    if ([pythonversion isEqualToString:@"0"]) {
+        pythonversion = @"";
+    }
+    if (![filemanager fileExistsAtPath:[NSString stringWithFormat:@"/usr/local/bin/python%@",pythonversion]]) {
         [self installPython];
     }
     else {
         [self installStreamLink];
     }
 }
+
+- (NSString *)getPythonVersion {
+    // Retrieves the latest python version
+    NSString *string;
+    NSTask *task = [[NSTask alloc] init];
+    task.launchPath = @"/bin/ls";
+    task.arguments = @[@"/usr/local/bin/"];
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    task.standardOutput = pipe;
+    NSFileHandle *file;
+    file = pipe.fileHandleForReading;
+    [task launch];
+    NSData *data;
+    data = [file readDataToEndOfFile];
+    
+    string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    
+    // Parse and get latest python version
+    NSArray *pythoninstalls = [[ezregex new] findMatches:string pattern:@"python(\\d+.\\d+|\\d+)"];
+    NSMutableArray *versions = [NSMutableArray new];
+    for (NSString *ver in pythoninstalls) {
+        [versions addObject:[ver stringByReplacingOccurrencesOfString:@"python" withString:@""]];
+    }
+    NSString *latestversionnum = @"0";
+    for (NSString *versionnum in versions) {
+        if (versionnum.floatValue > latestversionnum.floatValue) {
+            latestversionnum = versionnum;
+        }
+    }
+    return latestversionnum;
+}
+
 -(void)installPython{
     [_progressind startAnimation:nil];
     _task = [NSTask new];
     _statuslbl.stringValue = @"Installing Python from Homebrew.";
     [_task setLaunchPath:@"/usr/local/Homebrew/bin/brew"];
-    [_task setArguments:@[@"install", @"python"]];
+    [_task setArguments:@[@"install", @"python3"]];
     _pipe = nil;
     if (!pipe) {
         _pipe = [[NSPipe alloc] init];
@@ -89,7 +126,17 @@
         weakSelf.statuslbl.stringValue = @"Installing streamlink.";
     });
     _task = [NSTask new];
-    [_task setLaunchPath:@"/usr/local/bin/easy_install"];
+    NSString *pythonversion = [self getPythonVersion];
+    if ([pythonversion isEqualToString:@"0"]) {
+        pythonversion = @"";
+    }
+    NSFileManager *filemanager = [NSFileManager defaultManager];
+    if (![filemanager fileExistsAtPath:[NSString stringWithFormat:@"/usr/local/bin/python%@",pythonversion]]) {
+        [_task setLaunchPath:@"/usr/local/bin/easy_install"];
+    }
+    else {
+        [_task setLaunchPath:[NSString stringWithFormat:@"/usr/local/bin/easy_install-%@",pythonversion]];
+    }
     [_task setArguments:@[@"-U", @"streamlink"]];
     _pipe = nil;
     if (!_pipe) {

@@ -167,13 +167,49 @@ struct {
 }
 -(bool)checkifPythonExists{
     NSFileManager *filemanager = [NSFileManager defaultManager];
-    NSString * fullfilenamewithpath = @"/usr/local/bin/python";
-    if ([filemanager fileExistsAtPath:fullfilenamewithpath]) {
+    NSString *pythonversion = [self getPythonVersion];
+    if ([pythonversion isEqualToString:@"0"]) {
+        pythonversion = @"";
+    }
+    if (![filemanager fileExistsAtPath:[NSString stringWithFormat:@"/usr/local/bin/python%@",pythonversion]]) {
         return true;
     }
     return false;
 }
--(bool)checkifHomebrewExists{
+
+- (NSString *)getPythonVersion {
+    // Retrieves the latest python version
+    NSString *string;
+    NSTask *task = [[NSTask alloc] init];
+    task.launchPath = @"/bin/ls";
+    task.arguments = @[@"/usr/local/bin/"];
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    task.standardOutput = pipe;
+    NSFileHandle *file;
+    file = pipe.fileHandleForReading;
+    [task launch];
+    NSData *data;
+    data = [file readDataToEndOfFile];
+    
+    string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    
+    // Parse and get latest python version
+    NSArray *pythoninstalls = [[ezregex new] findMatches:string pattern:@"python(\\d+.\\d+|\\d+)"];
+    NSMutableArray *versions = [NSMutableArray new];
+    for (NSString *ver in pythoninstalls) {
+        [versions addObject:[ver stringByReplacingOccurrencesOfString:@"python" withString:@""]];
+    }
+    NSString *latestversionnum = @"0";
+    for (NSString *versionnum in versions) {
+        if (versionnum.floatValue > latestversionnum.floatValue) {
+            latestversionnum = versionnum;
+        }
+    }
+    return latestversionnum;
+}
+
+- (bool)checkifHomebrewExists{
     NSFileManager *filemanager = [NSFileManager defaultManager];
     NSString * fullfilenamewithpath = @"/usr/local/bin/brew";
     if ([filemanager fileExistsAtPath:fullfilenamewithpath]) {
@@ -181,7 +217,7 @@ struct {
     }
     return false;
 }
--(void)showHomebrewNotInstalledAlert{
+- (void)showHomebrewNotInstalledAlert{
     // Shows Not Installed
     NSAlert * alert = [[NSAlert alloc] init] ;
     [alert addButtonWithTitle:NSLocalizedString(@"Yes",nil)];
@@ -196,7 +232,7 @@ struct {
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://brew.sh"]];
     }
 }
--(void)showStreamLinkNotInstalledAlert:(NSWindow *)w{
+- (void)showStreamLinkNotInstalledAlert:(NSWindow *)w{
     // Shows Not Installed
     NSAlert * alert = [[NSAlert alloc] init] ;
     [alert addButtonWithTitle:NSLocalizedString(@"Yes",nil)];
@@ -211,7 +247,7 @@ struct {
         [self installStreamLink];
     }
 }
--(void)showAlert:(NSString *)title withExplaination:(NSString *)explaination{
+- (void)showAlert:(NSString *)title withExplaination:(NSString *)explaination{
     dispatch_async(dispatch_get_main_queue(), ^{
         NSAlert * alert = [[NSAlert alloc] init] ;
         [alert setMessageText:title];
@@ -222,7 +258,7 @@ struct {
         [alert runModal];
     });
 }
--(void)installStreamLink{
+- (void)installStreamLink{
     NSBundle *mainBundle = [NSBundle bundleForClass:[self class]];
     NSString *helperAppPath = [[mainBundle resourcePath]
                                stringByAppendingString:@"/streamlink Installer.app"];
