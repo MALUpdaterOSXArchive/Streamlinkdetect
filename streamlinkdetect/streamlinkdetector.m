@@ -122,11 +122,12 @@ struct {
     NSData *data;
     data = [file readDataToEndOfFile];
     NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-    NSString *pattern = @"streamlink (https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
+    NSString *pattern = @"streamlink *.* (https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
     ezregex * regex = [ezregex new];
     if([regex checkMatch:string pattern:pattern]) {
         string = [regex findMatch:string pattern:pattern rangeatindex:0];
-        string = [string stringByReplacingOccurrencesOfString:@"streamlink " withString:@""];
+            NSString *pattern = @"(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
+        string = [regex findMatch:string pattern:pattern rangeatindex:0];
         NSDictionary *info = [StreamInfoRetrieval retrieveStreamInfo:string];
         if (info){
             return [MediaStreamParse parse:@[info]];
